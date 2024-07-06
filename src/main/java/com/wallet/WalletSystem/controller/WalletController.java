@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
 @RestController
 @RequestMapping("/wallet")
 public class WalletController {
@@ -19,7 +20,6 @@ public class WalletController {
 
     @PostMapping("/topup")
     public ResponseEntity<WalletResponse> topupWallet(@Valid @RequestBody WalletTransactionRequest request) {
-        System.out.println("++++++++++++++++++++Insde COntroller++++++++++++" + request.getUserId() + request.getAmount());
         WalletResponse response = walletService.topup(request.getUserId(), request.getAmount());
         return ResponseEntity.ok(response);
     }
@@ -31,7 +31,7 @@ public class WalletController {
     }
 
    @GetMapping("/balance")
-    public ResponseEntity<WalletBalanceResponse> getBalance(@Valid @RequestParam String userId) {
+   public ResponseEntity<WalletBalanceResponse> getBalance(@Valid @RequestParam String userId) {
         WalletBalanceResponse response = walletService.getBalance(userId);
         return ResponseEntity.ok(response);
     }
